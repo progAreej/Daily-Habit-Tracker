@@ -1,15 +1,26 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose");
 
-const DropSchema = new Schema({
-    title: {
-        type: String,  // Changed 'string' to 'String'
-        required: true,
-    },
-    description: {
-        type: String,  // Changed 'string' to 'String'
-        default: '',   // Default should be an appropriate string (change to something meaningful if needed)
-    },
+const HabitSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+  },
+  category: {
+    type: String,
+    required: true,
+  },
+  tags: [String],
+  completionStatus: {
+    type: Boolean,
+    default: false,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-module.exports = mongoose.model('Hapit', DropSchema, "hapits");
+module.exports = mongoose.model("Habit", HabitSchema);
